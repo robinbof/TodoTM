@@ -1,0 +1,60 @@
+﻿@page "/"
+@using TodoTM.Models
+
+<PageTitle>Home - TODO Summary</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Large" Class="mt-4">
+    <MudText Typo="Typo.h3" Class="mb-4">TODO Summary</MudText>
+
+    <MudGrid>
+        <MudItem xs="12" md="4">
+            <MudCard>
+                <MudCardContent>
+                    <div style="text-align: center;">
+                        <MudIcon Icon="Icons.Material.Filled.List" Size="Size.Large" Class="mb-2" />
+                        <MudText Typo="Typo.h4">@totalItems</MudText>
+                        <MudText Typo="Typo.subtitle1">Total Items</MudText>
+                    </div>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+
+        <MudItem xs="12" md="4">
+            <MudCard>
+                <MudCardContent>
+                    <div style="text-align: center;">
+                        <MudIcon Icon="Icons.Material.Filled.CheckCircle" Size="Size.Large" Color="Color.Success" Class="mb-2" />
+                        <MudText Typo="Typo.h4" Color="Color.Success">@completedItems</MudText>
+                        <MudText Typo="Typo.subtitle1">Completed</MudText>
+                    </div>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+
+        <MudItem xs="12" md="4">
+            <MudCard>
+                <MudCardContent>
+                    <div style="text-align: center;">
+                        <MudIcon Icon="Icons.Material.Filled.Schedule" Size="Size.Large" Color="Color.Warning" Class="mb-2" />
+                        <MudText Typo="Typo.h4" Color="Color.Warning">@pendingItems</MudText>
+                        <MudText Typo="Typo.subtitle1">Pending</MudText>
+                    </div>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+
+@code {
+    private int totalItems = 0;
+    private int completedItems = 0;
+    private int pendingItems = 0;
+
+    protected override void OnInitialized()
+    {
+        // Sample data for now - you'll connect to real data later
+        totalItems = 8;
+        completedItems = 3;
+        pendingItems = 5;
+    }
+}
