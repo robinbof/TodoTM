@@ -1,5 +1,38 @@
-﻿<h3>ListPage</h3>
+﻿@page "/list"
+@using TodoTM.Models
+
+<h1>TODO List</h1>
+
+<button>Add New Item</button>
+
+<h3>Your TODO Items:</h3>
+
+@if (todoItems.Any())
+{
+    @foreach (var item in todoItems)
+    {
+        <div style="border: 1px solid #ccc; padding: 10px; margin: 5px;">
+            <strong>@item.Name</strong> - @item.Category
+            <br />
+            Status: @(item.Status ? "Done" : "Pending")
+            <br />
+            <button>Toggle Done/Undone</button>
+            <button>Delete</button>
+        </div>
+    }
+}
+else
+{
+    <p>No TODO items yet.</p>
+}
 
 @code {
+    private List<ToDoItem> todoItems = new();
 
+    protected override void OnInitialized()
+    {
+        // Sample data for now
+        todoItems.Add(new ToDoItem { Id = 1, Name = "Buy groceries", Status = false, Category = CategoryType.Personal });
+        todoItems.Add(new ToDoItem { Id = 2, Name = "Finish project", Status = true, Category = CategoryType.Business });
+    }
 }
